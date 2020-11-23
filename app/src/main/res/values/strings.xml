@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ExamCam</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pick_a_device_to_connect_to">Pick a device to connect to:</string>
+    <string name="not_seeing_your_device">Not seeing your device?</string>
+    <string name="search_for_devices">Search for devices</string>
+    <string name="not_seeing_your_device_click_the_search_button">Not seeing your device? Click the search button.</string>
+    <string name="take_photo">Take photo</string>
+    <string name="take_a_photo_to_proceed">Take a photo to proceed.</string>
+    <string name="image_to_be_sent">Image to be sent</string>
+    <string name="image_of_a_device">Image of a device</string>
+    <string name="example_device">Example Device</string>
+    <string name="send_photo">Send photo</string>
+</resources>
