@@ -3,8 +3,13 @@ package com.example.examcam;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
+import android.view.View;
 import android.widget.ProgressBar;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +23,7 @@ public class ConnectThread extends Thread {
     private File file;
     private boolean connectedState = false;
     private ProgressBar progressBar;
+    private Snackbar snackbar;
 
     public ConnectThread(BluetoothDevice device, BluetoothAdapter btAdapter, File file, ProgressBar progressBar) {
         // Use a temporary object that is later assigned to mmSocket
@@ -47,7 +53,23 @@ public class ConnectThread extends Thread {
         try {
             // Connect to the remote device through the socket. This call blocks
             // until it succeeds or throws an exception.
+            Handler handler = new Handler(Looper.getMainLooper());
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    snackbar = Snackbar.make(progressBar, "Connecting",
+                            Snackbar.LENGTH_INDEFINITE);
+                    snackbar.show();
+                }
+            });
             mmSocket.connect();
+            Handler postConnHandler = new Handler(Looper.getMainLooper());
+            postConnHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    snackbar.dismiss();
+                }
+            });
             Log.i("test", "Connected");
         } catch (IOException connectException) {
             // Unable to connect; close the socket and return.
